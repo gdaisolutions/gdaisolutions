@@ -3,10 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gdaisolutions/gdaisolutions.git"
-  },
+  "homepage": "https://www.gdaisolutions.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
