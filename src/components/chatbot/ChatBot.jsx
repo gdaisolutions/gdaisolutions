@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-
+import emailjs from '@emailjs/browser';
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
 const PRODUCTS = [
@@ -188,12 +188,41 @@ const LeadForm = ({ context, onSubmit, onClose }) => {
       <div className="gd-form-title">{context}</div>
       <div className="gd-form-subtitle">Fill in your details — we'll reach out within 24 hrs.</div>
       <div className="gd-form-fields">
-        {[["name","Your name"],["company","Company"],["email","Work email"],["phone","Phone number"]].map(([k,ph]) => (
+        {[["name", "Your name"], ["company", "Company"], ["email", "Work email"], ["phone", "Phone number"]].map(([k, ph]) => (
           <input key={k} placeholder={ph} value={form[k]} onChange={e => set(k, e.target.value)} className="gd-input" />
         ))}
         <textarea placeholder="Describe your requirement..." value={form.requirement} onChange={e => set("requirement", e.target.value)} rows={3} className="gd-input gd-textarea" />
         <div className="gd-form-actions">
-          <ActionBtn primary onClick={() => { if (form.name && form.email) { setSubmitted(true); onSubmit?.(form); } }}>Submit Request</ActionBtn>
+          <ActionBtn
+            primary
+            onClick={async () => {
+              if (!form.name || !form.email) return;
+
+              try {
+                await emailjs.send(
+                  "service_otr9vmp",
+                  "template_6f8n9vh",
+                  {
+                    name: form.name,
+                    company: form.company,
+                    email: form.email,
+                    phone: form.phone,
+                    requirement: form.requirement,
+                    time: new Date().toLocaleString(),
+                  },
+                  "6lHKc13GOqG_EoT75"
+                );
+
+                setSubmitted(true);
+                onSubmit?.(form);
+              } catch (error) {
+                console.error("Email sending failed:", error);
+                alert("Failed to send request. Please try again.");
+              }
+            }}
+          >
+            Submit Request
+          </ActionBtn>
           <ActionBtn onClick={onClose}>Cancel</ActionBtn>
         </div>
       </div>
@@ -239,7 +268,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
       text: "👋 Hi! Welcome to GD AI Solutions. I'm your AI business consultant. How can I help you today?",
       widget: (onAction) => (
         <div className="gd-chips-row">
-          {[["Products","products"],["Services","services"],["Education","education"],["Pricing","pricing"],["Contact Sales","lead-contact"],["WhatsApp","whatsapp"]].map(([l,k]) => (
+          {[["Products", "products"], ["Services", "services"], ["Education", "education"], ["Pricing", "pricing"], ["Contact Sales", "lead-contact"], ["WhatsApp", "whatsapp"]].map(([l, k]) => (
             <Chip key={k} onClick={() => onAction(k, l)}>{l}</Chip>
           ))}
         </div>
@@ -289,12 +318,12 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
     } else if (key === "pricing") {
       botReply(800, {
         text: "Pricing is tailored to your project scope and team size. Let me connect you with our team.",
-        widget: (onAction) => <LeadForm context="Get Custom Pricing" onSubmit={() => {}} onClose={() => handleAction("back-home", "↩ Back")} />
+        widget: (onAction) => <LeadForm context="Get Custom Pricing" onSubmit={() => { }} onClose={() => handleAction("back-home", "↩ Back")} />
       });
     } else if (key === "lead-contact" || key === "lead-demo" || key === "lead-pricing" || key === "lead-expert") {
       const titles = { "lead-contact": "Contact Sales", "lead-demo": "Request Demo", "lead-pricing": "Get Pricing", "lead-expert": "Talk to Expert" };
       botReply(600, {
-        widget: () => <LeadForm context={titles[key] || "Get in Touch"} onSubmit={() => {}} onClose={() => handleAction("back-home", "↩ Back")} />
+        widget: () => <LeadForm context={titles[key] || "Get in Touch"} onSubmit={() => { }} onClose={() => handleAction("back-home", "↩ Back")} />
       });
     } else if (key === "whatsapp") {
       botReply(600, { text: "You can reach us directly on WhatsApp at +91 87679 81515. Our team responds within a few minutes during business hours. 💬" });
@@ -303,7 +332,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
         text: "No problem! What else can I help you with?",
         widget: (onAction) => (
           <div className="gd-chips-row">
-            {[["Products","products"],["Services","services"],["Education","education"],["Pricing","pricing"],["Contact Sales","lead-contact"],["WhatsApp","whatsapp"]].map(([l,k]) => (
+            {[["Products", "products"], ["Services", "services"], ["Education", "education"], ["Pricing", "pricing"], ["Contact Sales", "lead-contact"], ["WhatsApp", "whatsapp"]].map(([l, k]) => (
               <Chip key={k} onClick={() => onAction(k, l)}>{l}</Chip>
             ))}
           </div>
@@ -387,13 +416,15 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
     else if (lower.includes("education") || lower.includes("training") || lower.includes("learn")) handleAction("education", text);
     else if (lower.includes("price") || lower.includes("pricing") || lower.includes("cost") || lower.includes("quote")) handleAction("pricing", text);
     else if (lower.includes("whatsapp") || lower.includes("contact")) handleAction("whatsapp", text);
-    else botReply(700, { text: "I'm best equipped to answer questions about our products, services, education programs, and pricing. Please choose a topic below:", widget: (oa) => (
-      <div className="gd-chips-row">
-        {[["Products","products"],["Services","services"],["Education","education"],["Pricing","pricing"]].map(([l,k]) => (
-          <Chip key={k} onClick={() => oa(k, l)}>{l}</Chip>
-        ))}
-      </div>
-    )});
+    else botReply(700, {
+      text: "I'm best equipped to answer questions about our products, services, education programs, and pricing. Please choose a topic below:", widget: (oa) => (
+        <div className="gd-chips-row">
+          {[["Products", "products"], ["Services", "services"], ["Education", "education"], ["Pricing", "pricing"]].map(([l, k]) => (
+            <Chip key={k} onClick={() => oa(k, l)}>{l}</Chip>
+          ))}
+        </div>
+      )
+    });
   };
 
   return (
@@ -684,7 +715,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
 
         {/* Quick Actions */}
         <div className="gd-quick-actions">
-          {[["📅 Book Demo","lead-demo"],["💬 WhatsApp","whatsapp"],["📞 Call Us","whatsapp"],["📧 Email Us","lead-contact"]].map(([l,k]) => (
+          {[["📅 Book Demo", "lead-demo"], ["💬 WhatsApp", "whatsapp"], ["📞 Call Us", "whatsapp"], ["📧 Email Us", "lead-contact"]].map(([l, k]) => (
             <button key={k} onClick={() => handleAction(k, l.split(" ").slice(1).join(" "))} className="gd-quick-btn">
               {l}
             </button>

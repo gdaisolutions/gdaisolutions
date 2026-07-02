@@ -377,7 +377,7 @@ export default function About() {
                     </div>
                   </div>
                 </div>
-
+{/* 
                 <div className="flex gap-2 sm:gap-3 mt-4 justify-center lg:justify-start">
                   {[
                     { icon: Link2, label: "LinkedIn", color: "#0A66C2" },
@@ -393,7 +393,7 @@ export default function About() {
                       {label}
                     </button>
                   ))}
-                </div>
+                </div> */}
               </div>
             </Reveal>
 

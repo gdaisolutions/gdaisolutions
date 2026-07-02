@@ -24,49 +24,83 @@ const pillars = [
   },
 ];
 
-const programs = [
+const domains = [
   {
-    tag: "Most Popular",
-    title: "Full Stack Development",
-    duration: "6 Months",
-    mode: "Online / Hybrid",
-    level: "Beginner → Pro",
-    color: "#7B2FFF",
-    topics: ["HTML, CSS, JS", "React & Node.js", "MongoDB & SQL", "DevOps & Deployment"],
-  },
-  {
-    tag: "AI Trending",
-    title: "AI & Machine Learning",
-    duration: "4 Months",
-    mode: "Online",
-    level: "Intermediate",
-    color: "#10B981",
-    topics: ["Python & NumPy", "ML Algorithms", "Deep Learning", "LLMs & Prompt Eng."],
-  },
-  {
-    tag: "New Batch",
-    title: "Data Analytics",
-    duration: "3 Months",
+    title: "Data Analyst",
+    duration: "3 & 6 Months",
     mode: "Online / Hybrid",
     level: "Beginner",
-    color: "#3B82F6",
+    color: "#F59E0B",
     topics: ["Excel & SQL", "Power BI", "Python for Data", "Business Insights"],
   },
   {
-    tag: "Business",
-    title: "Digital Transformation",
-    duration: "2 Months",
+    title: "Data Science",
+    duration: "3 & 6 Months",
+    mode: "Online / Hybrid",
+    level: "Intermediate",
+    color: "#7B2FFF",
+    topics: ["Statistics", "Python & R", "ML Models", "Deep Learning"],
+  },
+  {
+    title: "Web Development",
+    duration: "3 & 6 Months",
+    mode: "Online",
+    level: "Beginner",
+    color: "#10B981",
+    topics: ["HTML, CSS, JS", "React.js", "Node.js", "REST APIs"],
+  },
+  {
+    title: "Full Stack Java",
+    duration: "3 & 6 Months",
+    mode: "Online / Hybrid",
+    level: "Beginner → Pro",
+    color: "#3B82F6",
+    topics: ["Core Java", "Spring Boot", "React & Angular", "MySQL & MongoDB"],
+  },
+  {
+    title: "Full Stack Python Development",
+    duration: "3 & 6 Months",
+    mode: "Online",
+    level: "Beginner → Pro",
+    color: "#EF4444",
+    topics: ["Python Basics", "Django/Flask", "React.js", "PostgreSQL"],
+  },
+  {
+    title: "MERN Stack",
+    duration: "3 & 6 Months",
+    mode: "Online",
+    level: "Intermediate",
+    color: "#8B5CF6",
+    topics: ["MongoDB", "Express.js", "React.js", "Node.js"],
+  },
+  {
+    title: "Data Engineer",
+    duration: "3 & 6 Months",
+    mode: "Online / Hybrid",
+    level: "Intermediate",
+    color: "#06B6D4",
+    topics: ["ETL Pipelines", "SQL & NoSQL", "Cloud Data", "Apache Spark"],
+  },
+  {
+    title: "Digital Marketing",
+    duration: "3 & 6 Months",
     mode: "Online",
     level: "All Levels",
-    color: "#F59E0B",
-    topics: ["Digital Strategy", "Cloud Basics", "Automation Tools", "AI for Business"],
+    color: "#EC4899",
+    topics: ["SEO & SEM", "Social Media", "Google Ads", "Analytics"],
+  },
+  {
+    title: "AI/ML",
+    duration: "3 & 6 Months",
+    mode: "Online",
+    level: "Intermediate",
+    color: "#14B8A6",
+    topics: ["NLP", "Computer Vision", "LLMs & Prompt Eng.", "TensorFlow"],
   },
 ];
 
 const outcomes = [
   { val: "500+", label: "Students Trained" },
-  { val: "92%", label: "Placement Rate" },
-  { val: "50+", label: "Hiring Partners" },
   { val: "4.9", label: "Avg. Rating" },
 ];
 
@@ -125,13 +159,6 @@ const faqs = [
     q: "Can I pay in instalments?",
     a: "Absolutely. Flexible payment plans are available. Reach out via the contact form and we'll work out a schedule that suits you.",
   },
-];
-
-const marqueeItems = [
-  "Full Stack Development", "AI & Machine Learning", "Data Analytics",
-  "Digital Transformation", "Live Mentorship", "Real Projects",
-  "Placement Support", "Industry Experts", "Online & Hybrid",
-  "Certification", "Hands-on Training", "Global Careers",
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -195,7 +222,7 @@ const IconBar = () => (
 
 export default function Education() {
   const [hoveredPillar, setHoveredPillar] = useState(null);
-  const [hoveredProgram, setHoveredProgram] = useState(null);
+  const [hoveredDomain, setHoveredDomain] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
   const [heroVisible, setHeroVisible] = useState(false);
 
@@ -237,7 +264,6 @@ export default function Education() {
           0%,100% { transform: translateY(0); }
           50%     { transform: translateY(-5px); }
         }
-        /* SLOW marquee — 55s for smooth leisurely crawl */
         @keyframes marquee-left {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -260,7 +286,6 @@ export default function Education() {
           border-top: 1px solid rgba(255,255,255,0.04);
           border-bottom: 1px solid rgba(255,255,255,0.04);
         }
-   
 
         .marquee-tag {
           padding: 4px 14px;
@@ -393,12 +418,29 @@ export default function Education() {
         }
         .panel:hover { background: rgba(18,22,46,0.95); }
 
+        /* ── Domain Card ── */
+        .domain-card {
+          background: rgba(12,15,32,0.85);
+          transition: background 0.22s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+          position: relative;
+          overflow: hidden;
+        }
+        .domain-card:hover {
+          background: rgba(18,22,46,0.95);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+        }
+
         /* ── Responsive ── */
+        @media (max-width: 1100px) {
+          .grid-domains { grid-template-columns: repeat(3, 1fr) !important; }
+        }
         @media (max-width: 900px) {
           .grid-3  { grid-template-columns: 1fr !important; }
           .grid-2  { grid-template-columns: 1fr !important; }
           .grid-4  { grid-template-columns: 1fr 1fr !important; }
           .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
+          .grid-domains { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 540px) {
           .grid-4  { grid-template-columns: 1fr !important; }
@@ -407,6 +449,7 @@ export default function Education() {
           .hero-btns a { justify-content: center !important; }
           .cta-btns { flex-direction: column !important; }
           .cta-btns a { justify-content: center !important; }
+          .grid-domains { grid-template-columns: 1fr !important; }
         }
         @media (prefers-reduced-motion: reduce) {
           *, *::before, *::after {
@@ -466,7 +509,7 @@ export default function Education() {
             }}>Applications Open · GD Ai Solutions</span>
           </div>
 
-          {/* Heading — italic serif like Products page */}
+          {/* Heading */}
           <h1 style={{
             fontSize:"clamp(2.6rem,8vw,4.6rem)",
             fontWeight:700, fontStyle:"italic",
@@ -510,7 +553,9 @@ export default function Education() {
 
           {/* Stats */}
           <div className="stats-grid" style={{
-            display:"grid", gridTemplateColumns:"repeat(4,1fr)",
+            display:"grid", gridTemplateColumns:"repeat(2,1fr)",
+            maxWidth:"500px",
+            margin:"4rem auto 0",
             gap:"1px", marginTop:"4rem",
             border:"1px solid rgba(255,255,255,0.06)",
             borderRadius:5, overflow:"hidden",
@@ -540,14 +585,9 @@ export default function Education() {
         </section>
 
         {/* ════════════════════════════════════════
-            MARQUEE STRIP — slow 55s
-        ════════════════════════════════════════ */}
-    
-
-        {/* ════════════════════════════════════════
             MISSION / PILLARS
         ════════════════════════════════════════ */}
-        <section style={{ maxWidth:1060, margin:"0 auto", padding:"0 1.25rem 6rem" }}>
+        <section style={{ maxWidth:1200, margin:"0 auto", padding:"0 1.25rem 6rem" }}>
           <Reveal>
             <div style={{ textAlign:"center", marginBottom:"3.5rem" }}>
               <p className="eyebrow center">
@@ -595,7 +635,6 @@ export default function Education() {
                     position:"relative", overflow:"hidden",
                   }}
                 >
-                  {/* Corner glow */}
                   <div aria-hidden="true" style={{
                     position:"absolute", top:0, right:0,
                     width:90, height:90,
@@ -605,7 +644,6 @@ export default function Education() {
                     pointerEvents:"none",
                   }}/>
 
-                  {/* Accent label */}
                   <span style={{
                     display:"inline-block",
                     fontFamily:"'Inter', sans-serif",
@@ -629,7 +667,6 @@ export default function Education() {
                     fontSize:"0.83rem", color:"#2E3450", lineHeight:1.78,
                   }}>{p.desc}</p>
 
-                  {/* Hover underline */}
                   <div aria-hidden="true" style={{
                     width: hoveredPillar === i ? "36px" : "0px",
                     height:"1.5px", marginTop:"1.3rem",
@@ -643,7 +680,7 @@ export default function Education() {
         </section>
 
         {/* ════════════════════════════════════════
-            PROGRAMS
+            INTERNSHIP DOMAINS — 9 CARDS
         ════════════════════════════════════════ */}
         <section id="programs" style={{
           background:"rgba(7,9,15,0.98)",
@@ -652,7 +689,7 @@ export default function Education() {
           padding:"5.5rem 1.25rem",
           marginBottom:"6rem",
         }}>
-          <div style={{ maxWidth:1060, margin:"0 auto" }}>
+          <div style={{ maxWidth:1200, margin:"0 auto" }}>
             <Reveal>
               <div style={{ textAlign:"center", marginBottom:"3.5rem" }}>
                 <p className="eyebrow center">
@@ -665,77 +702,66 @@ export default function Education() {
                   fontWeight:700, fontStyle:"italic",
                   letterSpacing:"-0.025em", color:"#DCE4FF",
                 }}>
-                  Our Programs.
+                  Internship Domains.
                 </h2>
               </div>
             </Reveal>
 
-            <div className="grid-2" style={{
-              display:"grid", gridTemplateColumns:"repeat(2,1fr)",
-              gap:"1px",
-              border:"1px solid rgba(255,255,255,0.06)",
-              borderRadius:6, overflow:"hidden",
+            <div className="grid-domains" style={{
+              display:"grid",
+              gridTemplateColumns:"repeat(3, 1fr)",
+              gap:"1rem",
             }}>
-              {programs.map((prog,i) => (
-                <Reveal key={i} delay={i * 0.07}>
+              {domains.map((dom,i) => (
+                <Reveal key={i} delay={i * 0.05}>
                   <div
-                    className="panel"
-                    onMouseEnter={() => setHoveredProgram(i)}
-                    onMouseLeave={() => setHoveredProgram(null)}
+                    className="domain-card"
+                    onMouseEnter={() => setHoveredDomain(i)}
+                    onMouseLeave={() => setHoveredDomain(null)}
                     style={{
-                      padding:"2rem 1.75rem",
+                      padding:"1.75rem 1.5rem",
                       height:"100%",
-                      position:"relative", overflow:"hidden",
-                      borderRight: i%2===0 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                      borderBottom: i<2    ? "1px solid rgba(255,255,255,0.06)" : "none",
+                      border:"1px solid rgba(255,255,255,0.06)",
+                      borderRadius:6,
                     }}
                   >
                     {/* Corner glow */}
                     <div aria-hidden="true" style={{
                       position:"absolute", top:0, right:0,
-                      width:110, height:110,
-                      background:`radial-gradient(circle at 100% 0%, ${prog.color}12, transparent 70%)`,
-                      opacity: hoveredProgram === i ? 1 : 0,
+                      width:100, height:100,
+                      background:`radial-gradient(circle at 100% 0%, ${dom.color}14, transparent 70%)`,
+                      opacity: hoveredDomain === i ? 1 : 0,
                       transition:"opacity 0.28s", pointerEvents:"none",
                     }}/>
 
-                    {/* Tag row */}
-                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"1.25rem" }}>
-                      <span style={{
-                        fontFamily:"'Inter', sans-serif",
-                        fontSize:"0.6rem", fontWeight:700,
-                        letterSpacing:"0.1em", textTransform:"uppercase",
-                        padding:"3px 9px", borderRadius:2,
-                        background:`${prog.color}12`, color:prog.color,
-                        border:`1px solid ${prog.color}28`,
-                      }}>{prog.tag}</span>
-                      {/* Subtle color dot instead of emoji */}
+                    {/* Color dot */}
+                    <div style={{ display:"flex", justifyContent:"flex-end", marginBottom:"1.1rem" }}>
                       <span style={{
                         display:"block", width:8, height:8, borderRadius:"50%",
-                        background:`radial-gradient(circle, ${prog.color}, ${prog.color}66)`,
-                        boxShadow:`0 0 8px ${prog.color}44`,
+                        background:`radial-gradient(circle, ${dom.color}, ${dom.color}66)`,
+                        boxShadow:`0 0 8px ${dom.color}44`,
                       }}/>
                     </div>
 
                     <h3 style={{
-                      fontSize:"1.15rem", fontWeight:700,
-                      color:"#CCD4EE", marginBottom:"1rem",
+                      fontSize:"1.05rem", fontWeight:700,
+                      color:"#CCD4EE", marginBottom:"0.9rem",
                       letterSpacing:"-0.015em",
-                    }}>{prog.title}</h3>
+                    }}>{dom.title}</h3>
 
                     {/* Meta chips */}
-                    <div style={{ display:"flex", gap:"0.55rem", flexWrap:"wrap", marginBottom:"1.2rem" }}>
+                    <div style={{ display:"flex", gap:"0.4rem", flexWrap:"wrap", marginBottom:"1rem" }}>
                       {[
-                        { icon:<IconClock/>, val:prog.duration },
-                        { icon:<IconMonitor/>, val:prog.mode },
-                        { icon:<IconBar/>, val:prog.level },
+                        { icon:<IconClock/>, val:dom.duration },
+                        { icon:<IconMonitor/>, val:dom.mode },
+                        { icon:<IconBar/>, val:dom.level },
                       ].map(m => (
                         <span key={m.val} style={{
-                          display:"flex", alignItems:"center", gap:5,
+                          display:"flex", alignItems:"center", gap:4,
                           fontFamily:"'Inter', sans-serif",
-                          fontSize:"0.7rem", color:"#2E3450",
+                          fontSize:"0.65rem", color:"#2E3450",
                           border:"1px solid rgba(255,255,255,0.06)",
-                          padding:"3px 9px", borderRadius:2,
+                          padding:"2px 7px", borderRadius:2,
                         }}>
                           {m.icon} {m.val}
                         </span>
@@ -743,23 +769,23 @@ export default function Education() {
                     </div>
 
                     {/* Topics */}
-                    <div style={{ display:"flex", flexWrap:"wrap", gap:"5px", marginBottom:"1.6rem" }}>
-                      {prog.topics.map(t => (
+                    <div style={{ display:"flex", flexWrap:"wrap", gap:"4px", marginBottom:"1.4rem" }}>
+                      {dom.topics.map(t => (
                         <span key={t} style={{
                           fontFamily:"'Inter', sans-serif",
-                          fontSize:"0.68rem", padding:"2px 9px", borderRadius:2,
-                          background:`${prog.color}0C`,
-                          border:`1px solid ${prog.color}20`,
-                          color:prog.color, fontWeight:500,
+                          fontSize:"0.63rem", padding:"2px 7px", borderRadius:2,
+                          background:`${dom.color}0C`,
+                          border:`1px solid ${dom.color}20`,
+                          color:dom.color, fontWeight:500,
                         }}>{t}</span>
                       ))}
                     </div>
 
-                    <div style={{ height:1, background:"rgba(255,255,255,0.04)", marginBottom:"1.3rem" }}/>
+                    <div style={{ height:1, background:"rgba(255,255,255,0.04)", marginBottom:"1.1rem" }}/>
 
                     <a className="btn-sm"
-                      href={`mailto:${EMAIL}?subject=Enquiry — ${prog.title}`}
-                      style={{ color:prog.color, borderColor:`${prog.color}45` }}>
+                      href={`mailto:${EMAIL}?subject=Enquiry — ${dom.title}`}
+                      style={{ color:dom.color, borderColor:`${dom.color}45` }}>
                       Enquire <IconArrow/>
                     </a>
                   </div>
@@ -804,7 +830,6 @@ export default function Education() {
                   borderRight: i < steps.length-1 ? "1px solid rgba(255,255,255,0.06)" : "none",
                   position:"relative", overflow:"hidden",
                 }}>
-                  {/* Watermark */}
                   <span aria-hidden="true" style={{
                     position:"absolute", top:-2, right:10,
                     fontSize:"4.5rem", fontWeight:900, lineHeight:1,
@@ -847,7 +872,7 @@ export default function Education() {
         }}>
           <div style={{ maxWidth:1060, margin:"0 auto" }}>
             <Reveal>
-              <div style={{ textAlign:"center", marginBottom:"3.5rem" }}>
+            <div style={{ textAlign:"center", marginBottom:"3.5rem" }}>
                 <p className="eyebrow center">
                   <span className="eyebrow-line"/>
                   Student Stories
@@ -869,7 +894,6 @@ export default function Education() {
               {testimonials.map((t,i) => (
                 <Reveal key={i} delay={i * 0.1}>
                   <div className="testi-card">
-                    {/* Opening quote */}
                     <div style={{
                       fontSize:"2.8rem", lineHeight:1,
                       color:"rgba(123,47,255,0.18)",
@@ -902,7 +926,6 @@ export default function Education() {
                       </div>
                     </div>
 
-                    {/* Program tag */}
                     <span style={{
                       position:"absolute", top:"1.2rem", right:"1.2rem",
                       fontFamily:"'Inter', sans-serif",
@@ -974,7 +997,6 @@ export default function Education() {
           background:"radial-gradient(ellipse at 50% 0%, rgba(123,47,255,0.07), transparent 68%)",
           position:"relative",
         }}>
-          {/* Top accent line */}
           <div aria-hidden="true" style={{
             position:"absolute", top:0, left:"50%",
             transform:"translateX(-50%)",

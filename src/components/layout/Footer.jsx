@@ -11,6 +11,7 @@ import {
   Mail,
   ArrowUpRight,
 } from "lucide-react";
+import { FaFacebookF } from "react-icons/fa";
 import logo from "../../assets/logo.jpeg";
 
 const EMAIL = "contact.gdaisolutions@gmail.com";
@@ -41,7 +42,7 @@ const SOCIALS = [
   },
   {
     label: "YouTube",
-    href: "https://youtube.com/@gdaisolutions",
+    href: "https://www.youtube.com/@GDAISOLUTIONS",
     Icon: () => (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -59,12 +60,17 @@ const SOCIALS = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/company/gdaisolutions",
+    href: "https://www.linkedin.com/company/gdaisolutions",
     Icon: () => (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
       </svg>
     ),
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/share/1D8HmjXK4K/",
+    Icon: () => <FaFacebookF size={15} />,
   },
 ];
 
@@ -246,72 +252,7 @@ export default function Footer() {
         background: "linear-gradient(90deg, transparent, rgba(99,102,241,0.2) 30%, rgba(124,58,237,0.3) 50%, rgba(99,102,241,0.2) 70%, transparent)",
       }} />
 
-      {/* ── Newsletter strip ── */}
-      <div style={{
-        borderBottom: "1px solid rgba(99, 102, 241, 0.08)",
-        padding: "2.5rem 1.5rem",
-        position: "relative",
-        background: "rgba(99, 102, 241, 0.02)",
-      }}>
-        <div style={{
-          maxWidth: 1100, margin: "0 auto",
-          display: "flex", alignItems: "center",
-          justifyContent: "space-between",
-          gap: "2rem", flexWrap: "wrap",
-        }}>
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: "0.45rem" }}>
-              <div style={{
-                width: 6, height: 6, borderRadius: "50%",
-                background: "linear-gradient(135deg, #4338ca, #7c3aed)",
-                boxShadow: "0 0 8px rgba(99,102,241,0.6)",
-                animation: "footer-pulse 2.5s ease-in-out infinite",
-              }} />
-              <span style={{
-                fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                background: "linear-gradient(135deg, #818cf8, #a78bfa)",
-                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-              }}>
-                Stay in the loop
-              </span>
-            </div>
-            <p style={{ fontSize: "1rem", fontWeight: 700, color: "#e2e8f0", letterSpacing: "-0.01em", margin: 0 }}>
-              Get product updates & AI insights.
-            </p>
-          </div>
-
-          {subscribed ? (
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              style={{
-                display: "flex", alignItems: "center", gap: 10,
-                background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.25)",
-                borderRadius: 12, padding: "10px 18px",
-              }}
-            >
-              <span style={{ color: "#818cf8", fontSize: "1rem" }}>✓</span>
-              <span style={{ color: "#a5b4fc", fontWeight: 600, fontSize: "13px" }}>You're subscribed!</span>
-            </motion.div>
-          ) : (
-            <div className="f2-nl-row" style={{ display: "flex", gap: 10, flex: 1, maxWidth: 420 }}>
-              <input
-                className="f2-nl-input"
-                type="email"
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
-              />
-              <button className="f2-nl-btn" onClick={handleSubscribe}>
-                Subscribe
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-
+   
       {/* ── Main body ── */}
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "3.5rem 1.5rem 2rem", position: "relative" }}>
 
@@ -416,41 +357,7 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* CTA box */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.35 }}
-              style={{
-                marginTop: "2rem",
-                padding: "1.4rem 1.6rem",
-                borderRadius: 18,
-                background: "linear-gradient(135deg, rgba(67,56,202,0.1) 0%, rgba(124,58,237,0.08) 100%)",
-                border: "1px solid rgba(99,102,241,0.15)",
-              }}
-            >
-              <p style={{ fontSize: "13px", fontWeight: 600, color: "#c7d2fe", margin: "0 0 0.3rem" }}>
-                Ready to build something great?
-              </p>
-              <p style={{ fontSize: "12px", color: "#475569", margin: "0 0 1rem" }}>
-                Let's talk about how AI can power your business.
-              </p>
-              <Link to="/contact" style={{ textDecoration: "none" }}>
-                <motion.span
-                  whileHover={{ x: 3 }}
-                  style={{
-                    display: "inline-flex", alignItems: "center", gap: 6,
-                    fontSize: "12.5px", fontWeight: 700,
-                    background: "linear-gradient(135deg, #818cf8, #a78bfa)",
-                    WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-                    cursor: "pointer",
-                  }}
-                >
-                  Get in touch <ArrowUpRight size={13} style={{ color: "#818cf8" }} />
-                </motion.span>
-              </Link>
-            </motion.div>
+          
           </div>
         </div>
 

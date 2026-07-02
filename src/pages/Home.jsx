@@ -2,6 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import bgDark from "../assets/bg-dark.png";
+import fruitleysLogo from "../assets/our_clients/fruitleys_logo.jpeg";
+import nithyaLogo from "../assets/our_clients/nithya_logo.png";
+import shauryaLogo from "../assets/our_clients/shaurya_logo.jpeg";
+import smuthLogo from "../assets/our_clients/smuth.jpeg";
+import suntechLogo from "../assets/our_clients/suntech_logo.jpg";
+import vedaLogo from "../assets/our_clients/veda_logo.jpeg";
+import visionLogo from "../assets/our_clients/vision_logo.jpeg";
+import wgsLogo from "../assets/our_clients/wgs_logo.png";
 import {
   Brain, Bot, MessageSquare, Workflow, Code2, Globe, Smartphone, Database,
   Users, Cloud, BarChart3, LayoutDashboard, Server, PackageCheck, UserCog,
@@ -81,6 +89,66 @@ function CardImage({ src, alt, color }) {
 }
 
 /* ══════════════════════════
+   CLIENTS MARQUEE — floating auto-scroll logos (no containers)
+══════════════════════════ */
+function ClientsMarquee({ items }) {
+  const loop = [...items, ...items];
+  return (
+    <div
+      className="relative w-full overflow-hidden"
+      style={{
+        maskImage: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
+      }}
+    >
+      <div
+        className="flex items-center gap-12 sm:gap-20 md:gap-24 client-marquee-track"
+        style={{ width: "max-content" }}
+      >
+        {loop.map((c, i) => (
+          <img
+            key={`${c.name}-${i}`}
+            src={c.logo}
+            alt={c.name}
+            loading="lazy"
+            decoding="async"
+            className="flex-shrink-0 h-16 sm:h-20 md:h-24 w-auto object-contain client-logo"
+          />
+        ))}
+      </div>
+
+      <style>{`
+        .client-marquee-track {
+          animation: clientScroll 34s linear infinite;
+        }
+        .client-marquee-track:hover {
+          animation-play-state: paused;
+        }
+        .client-logo {
+          opacity: 0.85;
+          filter: drop-shadow(0 0 0 rgba(0,0,0,0));
+          transition: transform 0.4s cubic-bezier(.22,1,.36,1), opacity 0.4s ease, filter 0.4s ease;
+        }
+        .client-logo:hover {
+          opacity: 1;
+          transform: scale(1.08);
+          filter: drop-shadow(0 0 18px rgba(129,140,248,0.4));
+        }
+        @keyframes clientScroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        @media (max-width: 640px) {
+          .client-marquee-track {
+            animation-duration: 22s;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+/* ══════════════════════════
    DATA
 ══════════════════════════ */
 const services = [
@@ -115,6 +183,17 @@ const educationOfferings = [
   { icon: Award, title: "Industry Training", description: "Domain-specific training programs designed by practitioners, delivered with real tools." },
   { icon: Lightbulb, title: "Workshops & Bootcamps", description: "Intensive learning experiences that compress months of learning into focused days." },
   { icon: BookOpen, title: "Mentorship Programs", description: "1-on-1 and cohort mentorship from working engineers and AI professionals." },
+];
+
+const clients = [
+  { name: "Fruitley's", logo: fruitleysLogo },
+  { name: "Nithya Ayurveda", logo: nithyaLogo },
+  { name: "Shaurya", logo: shauryaLogo },
+  { name: "Smuth", logo: smuthLogo },
+  { name: "Suntech", logo: suntechLogo },
+  { name: "The Vedh Media", logo: vedaLogo },
+  { name: "Vision Agro", logo: visionLogo },
+  { name: "Wisdom Global School", logo: wgsLogo },
 ];
 
 const whyUs = [
@@ -578,12 +657,36 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════
-          WHY CHOOSE US
+          OUR CLIENTS — floating auto-scroll marquee
       ══════════════════════════════ */}
-      <section className="py-16 md:py-28 relative overflow-hidden" style={{ background: "#080C1F" }}>
+      <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "#080C1F" }}>
         <div className="pointer-events-none absolute inset-x-0 top-0 h-20" style={{ background: "linear-gradient(to bottom, #050816, transparent)" }} />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20" style={{ background: "linear-gradient(to top, #050816, transparent)" }} />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[300px] rounded-full" style={{ background: "radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 65%)", filter: "blur(50px)" }} />
 
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+              <SectionLabel text="Our Clients" color="#3B82F6" />
+              <h2 style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontStyle: "italic", fontSize: "clamp(1.4rem, 5vw, 2.5rem)", color: "#F8FAFC", lineHeight: 1.2 }}>
+                Trusted by businesses building their future with us
+              </h2>
+              <p className="text-sm sm:text-base leading-relaxed mt-3" style={{ color: "#64748B", fontFamily: FONT_BODY, fontStyle: "italic", fontWeight: 400 }}>
+                A growing family of brands across industries who partner with GD AI Solutions.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <ClientsMarquee items={clients} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════
+          WHY CHOOSE US
+      ══════════════════════════════ */}
+      <section className="py-16 md:py-28 relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
@@ -617,7 +720,10 @@ export default function Home() {
       {/* ══════════════════════════════
           INDUSTRIES
       ══════════════════════════════ */}
-      <section className="py-16 md:py-28 relative overflow-hidden">
+      <section className="py-16 md:py-28 relative overflow-hidden" style={{ background: "#080C1F" }}>
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-20" style={{ background: "linear-gradient(to bottom, #050816, transparent)" }} />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20" style={{ background: "linear-gradient(to top, #050816, transparent)" }} />
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="text-center max-w-xl mx-auto mb-10 sm:mb-14">
