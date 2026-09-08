@@ -15,7 +15,7 @@ import wgsLogo from "../assets/our_clients/wgs_logo.png";
 // CLIENT LOGOS
 import arJaJewellersLogo from "../assets/our_clients/AR_JA JEWELLERS_logo.jpg";
 import newClientLogo1 from "../assets/our_clients/ChatGPT Image Sep 7, 2026, 05_30_43 PM.png";
-import ichhaHomesLogo from "../assets/our_clients/ICHHA HOMES_logo.png";
+import ichhaHomesLogo from "../assets/our_clients/image.png";
 import manasrajEnterprisesLogo from "../assets/our_clients/MANASRAJ ENTERPRISES_logo.png";
 import mansiWaswaniLogo from "../assets/our_clients/MANSI WASWANI_logo.jpg";
 import omkarLogo from "../assets/our_clients/omkar logo.png";

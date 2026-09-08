@@ -398,7 +398,10 @@ export default function Company() {
                       color: "#94A3B8",
                     }}
                   >
-                    <Icon className="w-3.5 h-3.5" style={{ color: "#6366F1" }} />
+                    <Icon
+                      className="w-3.5 h-3.5"
+                      style={{ color: "#6366F1" }}
+                    />
                     {text}
                   </div>
                 ))}
@@ -512,36 +515,59 @@ export default function Company() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               {[
-                {
-                  name: "Sanika Shelake",
-                  role: "TL & AI Engineer",
-                  color: "#3B82F6",
-                  initial: "S",
-                },
+                /* =================================================
+                   1. DEEPTI JOSHI
+                ================================================= */
                 {
                   name: "Deepti Joshi",
                   role: "TL & MERN Stack Developer",
                   color: "#3B82F6",
                   initial: "D",
                 },
+
+                /* =================================================
+                   2. SANIKA SHELAKE
+                ================================================= */
+                {
+                  name: "Sanika Shelake",
+                  role: "TL & AI Engineer",
+                  color: "#3B82F6",
+                  initial: "S",
+                },
+
+                /* =================================================
+                   3. SONAL AMBEKAR
+                ================================================= */
                 {
                   name: "Sonal Ambekar",
                   role: "Mobile Application Developer",
                   color: "#8B5CF6",
                   initial: "S",
                 },
+
+                /* =================================================
+                   4. ABHISHEK GHADMODE
+                ================================================= */
                 {
                   name: "Abhishek Ghadmode",
                   role: "AI Engineer",
                   color: "#A855F7",
                   initial: "A",
                 },
+
+                /* =================================================
+                   5. MADHURI KUMARI
+                ================================================= */
                 {
                   name: "Madhuri Kumari",
                   role: "AI Engineer",
                   color: "#6366F1",
                   initial: "M",
                 },
+
+                /* =================================================
+                   6. GITANJALI
+                ================================================= */
                 {
                   name: "Gitanjali",
                   role: "AI Engineer",
