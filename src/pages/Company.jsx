@@ -487,127 +487,6 @@ export default function Company() {
             }}
           />
 
-          {/* CTO */}
-          <Reveal delay={80}>
-            <GlassCard
-              className="p-6 sm:p-8 lg:p-10"
-              hoverGlow="rgba(59,130,246,0.18)"
-            >
-              <div className="flex flex-wrap items-center gap-4 mb-6">
-                <div>
-                  <p
-                    className="text-lg sm:text-xl font-bold"
-                    style={{ color: "#F8FAFC" }}
-                  >
-                    Deepti Joshi
-                  </p>
-
-                  <span
-                    className="inline-block mt-1 text-[10px] sm:text-xs font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full"
-                    style={{
-                      background: "rgba(59,130,246,0.2)",
-                      border: "1px solid rgba(59,130,246,0.35)",
-                      color: "#60A5FA",
-                    }}
-                  >
-                    CTO · MERN Stack Developer
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap gap-2 ml-auto">
-                  <div
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.09)",
-                      color: "#94A3B8",
-                    }}
-                  >
-                    <MapPin
-                      className="w-3.5 h-3.5"
-                      style={{ color: "#3B82F6" }}
-                    />
-                    Maharashtra, India
-                  </div>
-
-                  <div
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.09)",
-                      color: "#94A3B8",
-                    }}
-                  >
-                    <Code2
-                      className="w-3.5 h-3.5"
-                      style={{ color: "#3B82F6" }}
-                    />
-                    Full-Stack Engineer
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="relative rounded-xl p-4 sm:p-5 mb-5"
-                style={{
-                  background: "rgba(59,130,246,0.07)",
-                  border: "1px solid rgba(59,130,246,0.15)",
-                }}
-              >
-                <Quote
-                  className="absolute top-3 right-3 w-6 h-6"
-                  style={{ color: "rgba(59,130,246,0.2)" }}
-                />
-
-                <p
-                  className="text-sm sm:text-base font-medium leading-relaxed italic pr-6"
-                  style={{ color: "#CBD5E1" }}
-                >
-                  "Great software is built at the intersection of clean
-                  architecture and relentless attention to the user's reality.
-                  I write code to make complex things feel effortless."
-                </p>
-
-                <div className="mt-3 flex items-center gap-2">
-                  <div
-                    className="w-6 h-px"
-                    style={{ background: "#3B82F6" }}
-                  />
-
-                  <span
-                    className="text-xs font-semibold"
-                    style={{ color: "#3B82F6" }}
-                  >
-                    Deepti Joshi
-                  </span>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <p
-                  className="text-xs sm:text-sm leading-relaxed"
-                  style={{ color: "#94A3B8" }}
-                >
-                  Deepti Joshi serves as Chief Technology Officer at GD AI
-                  Solutions, leading the engineering vision and full-stack
-                  development practice. A specialist in the MERN stack —
-                  MongoDB, Express, React, and Node.js — she architects the
-                  scalable, high-performance platforms that power our clients'
-                  most critical operations.
-                </p>
-
-                <p
-                  className="text-xs sm:text-sm leading-relaxed"
-                  style={{ color: "#94A3B8" }}
-                >
-                  Deepti brings disciplined engineering thinking to every
-                  product she touches, ensuring that systems are functional,
-                  robust, maintainable, and ready to grow.
-                </p>
-              </div>
-            </GlassCard>
-          </Reveal>
-
           {/* =================================================
               ADDITIONAL TEAM MEMBERS
           ================================================= */}
@@ -634,27 +513,39 @@ export default function Company() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
               {[
                 {
+                  name: "Sanika Shelake",
+                  role: "TL & AI Engineer",
+                  color: "#3B82F6",
+                  initial: "S",
+                },
+                {
+                  name: "Deepti Joshi",
+                  role: "TL & MERN Stack Developer",
+                  color: "#3B82F6",
+                  initial: "D",
+                },
+                {
                   name: "Sonal Ambekar",
-                  role: "Software Engineer",
-                  color: "#6366F1",
+                  role: "Mobile Application Developer",
+                  color: "#8B5CF6",
                   initial: "S",
                 },
                 {
                   name: "Abhishek Ghadmode",
                   role: "AI Engineer",
-                  color: "#3B82F6",
+                  color: "#A855F7",
                   initial: "A",
                 },
                 {
                   name: "Madhuri Kumari",
                   role: "AI Engineer",
-                  color: "#8B5CF6",
+                  color: "#6366F1",
                   initial: "M",
                 },
                 {
                   name: "Gitanjali",
                   role: "AI Engineer",
-                  color: "#A855F7",
+                  color: "#3B82F6",
                   initial: "G",
                 },
               ].map((member, index) => (

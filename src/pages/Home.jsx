@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import bgDark from "../assets/bg-dark.png";
+
 import fruitleysLogo from "../assets/our_clients/fruitleys_logo.jpeg";
 import nithyaLogo from "../assets/our_clients/nithya_logo.png";
 import shauryaLogo from "../assets/our_clients/shaurya_logo.jpeg";
@@ -11,50 +12,88 @@ import vedaLogo from "../assets/our_clients/veda_logo.jpeg";
 import visionLogo from "../assets/our_clients/vision_logo.jpeg";
 import wgsLogo from "../assets/our_clients/wgs_logo.png";
 
-// NEW CLIENT LOGOS
+// CLIENT LOGOS
 import arJaJewellersLogo from "../assets/our_clients/AR_JA JEWELLERS_logo.jpg";
-import coreRealityLogo from "../assets/our_clients/CORE REALITY_logo.png";
-import ecofriendlyGaneshLogo from "../assets/our_clients/ECOFRIENDLY_GANESH_logo.png";
+import newClientLogo1 from "../assets/our_clients/ChatGPT Image Sep 7, 2026, 05_30_43 PM.png";
 import ichhaHomesLogo from "../assets/our_clients/ICHHA HOMES_logo.png";
 import manasrajEnterprisesLogo from "../assets/our_clients/MANASRAJ ENTERPRISES_logo.png";
 import mansiWaswaniLogo from "../assets/our_clients/MANSI WASWANI_logo.jpg";
+import omkarLogo from "../assets/our_clients/omkar logo.png";
 import shivNurseryLogo from "../assets/our_clients/SHIV NURSERY_logo.jpg";
 import shivparvConstructionLogo from "../assets/our_clients/SHIVPARV CONSTRUCTION_logo.jpg";
 import sparshDentalCareLogo from "../assets/our_clients/SPARSH DENTAL CARE_logo.jpg";
 
 import {
-  Brain, Bot, MessageSquare, Workflow, Code2, Globe, Smartphone, Database,
-  Users, Cloud, BarChart3, LayoutDashboard, Server, PackageCheck, UserCog,
-  Stethoscope, GraduationCap, LineChart, PieChart, Boxes, BookOpen, Briefcase,
-  Lightbulb, Award, ArrowRight, ShieldCheck, Layers, Zap, HeartHandshake,
-  Factory, ShoppingCart, Building2, Landmark, Truck, HeartPulse, CheckCircle2,
-  ChevronRight, Sparkles, Star,
+  Brain,
+  Bot,
+  MessageSquare,
+  Workflow,
+  Code2,
+  Globe,
+  Smartphone,
+  Database,
+  Users,
+  Cloud,
+  BarChart3,
+  LayoutDashboard,
+  Server,
+  PackageCheck,
+  UserCog,
+  Stethoscope,
+  GraduationCap,
+  LineChart,
+  PieChart,
+  Boxes,
+  BookOpen,
+  Briefcase,
+  Lightbulb,
+  Award,
+  ArrowRight,
+  ShieldCheck,
+  Layers,
+  Zap,
+  HeartHandshake,
+  Factory,
+  ShoppingCart,
+  Building2,
+  Landmark,
+  Truck,
+  HeartPulse,
+  CheckCircle2,
+  ChevronRight,
+  Sparkles,
 } from "lucide-react";
 
 /* ══════════════════════════
    FONT CONFIG
    Times New Roman — Italic
 ══════════════════════════ */
+
 const FONT_BODY = "'Times New Roman', Times, serif";
 const FONT_DISPLAY = "'Times New Roman', Times, serif";
 
 /* ══════════════════════════
    SCROLL-REVEAL HOOK
 ══════════════════════════ */
+
 function useReveal(threshold = 0.12) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
+
     if (!el) return;
 
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        setVisible(true);
-        obs.disconnect();
-      }
-    }, { threshold });
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold }
+    );
 
     obs.observe(el);
 
@@ -64,7 +103,12 @@ function useReveal(threshold = 0.12) {
   return [ref, visible];
 }
 
-function Reveal({ children, delay = 0, y = 30, className = "" }) {
+function Reveal({
+  children,
+  delay = 0,
+  y = 30,
+  className = "",
+}) {
   const [ref, visible] = useReveal();
 
   return (
@@ -73,7 +117,9 @@ function Reveal({ children, delay = 0, y = 30, className = "" }) {
       className={className}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : `translateY(${y}px)`,
+        transform: visible
+          ? "translateY(0)"
+          : `translateY(${y}px)`,
         transition: `opacity 0.75s cubic-bezier(.22,1,.36,1) ${delay}ms, transform 0.75s cubic-bezier(.22,1,.36,1) ${delay}ms`,
       }}
     >
@@ -83,15 +129,19 @@ function Reveal({ children, delay = 0, y = 30, className = "" }) {
 }
 
 /* ══════════════════════════
-   CARD IMAGE — lazy, with graceful fallback gradient
+   CARD IMAGE
 ══════════════════════════ */
+
 function CardImage({ src, alt, color }) {
   const [failed, setFailed] = useState(false);
 
   return (
     <div
       className="relative w-full overflow-hidden rounded-xl mb-3 sm:mb-4 flex-shrink-0"
-      style={{ aspectRatio: "16 / 10", background: `${color}12` }}
+      style={{
+        aspectRatio: "16 / 10",
+        background: `${color}12`,
+      }}
     >
       {!failed && (
         <img
@@ -101,7 +151,9 @@ function CardImage({ src, alt, color }) {
           decoding="async"
           onError={() => setFailed(true)}
           className="w-full h-full object-cover"
-          style={{ filter: "saturate(0.9) brightness(0.85)" }}
+          style={{
+            filter: "saturate(0.9) brightness(0.85)",
+          }}
         />
       )}
 
@@ -116,8 +168,9 @@ function CardImage({ src, alt, color }) {
 }
 
 /* ══════════════════════════
-   CLIENTS MARQUEE — floating auto-scroll logos (no containers)
+   CLIENTS MARQUEE
 ══════════════════════════ */
+
 function ClientsMarquee({ items }) {
   const loop = [...items, ...items];
 
@@ -133,7 +186,9 @@ function ClientsMarquee({ items }) {
     >
       <div
         className="flex items-center gap-12 sm:gap-20 md:gap-24 client-marquee-track"
-        style={{ width: "max-content" }}
+        style={{
+          width: "max-content",
+        }}
       >
         {loop.map((c, i) => (
           <img
@@ -159,13 +214,18 @@ function ClientsMarquee({ items }) {
         .client-logo {
           opacity: 0.85;
           filter: drop-shadow(0 0 0 rgba(0,0,0,0));
-          transition: transform 0.4s cubic-bezier(.22,1,.36,1), opacity 0.4s ease, filter 0.4s ease;
+          transition:
+            transform 0.4s cubic-bezier(.22,1,.36,1),
+            opacity 0.4s ease,
+            filter 0.4s ease;
         }
 
         .client-logo:hover {
           opacity: 1;
           transform: scale(1.08);
-          filter: drop-shadow(0 0 18px rgba(129,140,248,0.4));
+          filter: drop-shadow(
+            0 0 18px rgba(129,140,248,0.4)
+          );
         }
 
         @keyframes clientScroll {
@@ -471,29 +531,79 @@ const educationOfferings = [
 
 /* ══════════════════════════
    CLIENTS
-   OLD + NEW CLIENTS
+   ALL REAL LOGOS FROM
+   src/assets/our_clients
 ══════════════════════════ */
-const clients = [
-  // OLD CLIENTS
-  { name: "Fruitley's", logo: fruitleysLogo },
-  { name: "Nithya Ayurveda", logo: nithyaLogo },
-  { name: "Shaurya", logo: shauryaLogo },
-  { name: "Smuth", logo: smuthLogo },
-  { name: "Suntech", logo: suntechLogo },
-  { name: "The Vedh Media", logo: vedaLogo },
-  { name: "Vision Agro", logo: visionLogo },
-  { name: "Wisdom Global School", logo: wgsLogo },
 
-  // NEW CLIENTS
-  { name: "AR JA Jewellers", logo: arJaJewellersLogo },
-  { name: "Core Reality", logo: coreRealityLogo },
-  { name: "Ecofriendly Ganesh", logo: ecofriendlyGaneshLogo },
-  { name: "Ichha Homes", logo: ichhaHomesLogo },
-  { name: "Manasraj Enterprises", logo: manasrajEnterprisesLogo },
-  { name: "Mansi Waswani", logo: mansiWaswaniLogo },
-  { name: "Shiv Nursery", logo: shivNurseryLogo },
-  { name: "Shivparv Construction", logo: shivparvConstructionLogo },
-  { name: "Sparsh Dental Care", logo: sparshDentalCareLogo },
+const clients = [
+  {
+    name: "Fruitley's",
+    logo: fruitleysLogo,
+  },
+  {
+    name: "Nithya Ayurveda",
+    logo: nithyaLogo,
+  },
+  {
+    name: "Shaurya",
+    logo: shauryaLogo,
+  },
+  {
+    name: "Smuth",
+    logo: smuthLogo,
+  },
+  {
+    name: "Suntech",
+    logo: suntechLogo,
+  },
+  {
+    name: "The Vedh Media",
+    logo: vedaLogo,
+  },
+  {
+    name: "Vision Agro",
+    logo: visionLogo,
+  },
+  {
+    name: "Wisdom Global School",
+    logo: wgsLogo,
+  },
+  {
+    name: "AR JA Jewellers",
+    logo: arJaJewellersLogo,
+  },
+  {
+    name: "New Client 1",
+    logo: newClientLogo1,
+  },
+  {
+    name: "Ichha Homes",
+    logo: ichhaHomesLogo,
+  },
+  {
+    name: "Manasraj Enterprises",
+    logo: manasrajEnterprisesLogo,
+  },
+  {
+    name: "Mansi Waswani",
+    logo: mansiWaswaniLogo,
+  },
+  {
+    name: "Omkar",
+    logo: omkarLogo,
+  },
+  {
+    name: "Shiv Nursery",
+    logo: shivNurseryLogo,
+  },
+  {
+    name: "Shivparv Construction",
+    logo: shivparvConstructionLogo,
+  },
+  {
+    name: "Sparsh Dental Care",
+    logo: sparshDentalCareLogo,
+  },
 ];
 
 const whyUs = [
@@ -536,14 +646,38 @@ const whyUs = [
 ];
 
 const industries = [
-  { icon: Building2, name: "Enterprise & Corporate" },
-  { icon: HeartPulse, name: "Healthcare" },
-  { icon: GraduationCap, name: "Education" },
-  { icon: ShoppingCart, name: "Retail & E-Commerce" },
-  { icon: Factory, name: "Manufacturing" },
-  { icon: Landmark, name: "Finance & Banking" },
-  { icon: Truck, name: "Logistics & Supply Chain" },
-  { icon: Sparkles, name: "Startups & SaaS" },
+  {
+    icon: Building2,
+    name: "Enterprise & Corporate",
+  },
+  {
+    icon: HeartPulse,
+    name: "Healthcare",
+  },
+  {
+    icon: GraduationCap,
+    name: "Education",
+  },
+  {
+    icon: ShoppingCart,
+    name: "Retail & E-Commerce",
+  },
+  {
+    icon: Factory,
+    name: "Manufacturing",
+  },
+  {
+    icon: Landmark,
+    name: "Finance & Banking",
+  },
+  {
+    icon: Truck,
+    name: "Logistics & Supply Chain",
+  },
+  {
+    icon: Sparkles,
+    name: "Startups & SaaS",
+  },
 ];
 
 const process = [
@@ -577,7 +711,11 @@ const process = [
    SHARED UI PRIMITIVES
 ══════════════════════════ */
 
-function GlassCard({ children, className = "", color = "#6366F1" }) {
+function GlassCard({
+  children,
+  className = "",
+  color = "#6366F1",
+}) {
   const [hov, setHov] = useState(false);
 
   return (
@@ -603,12 +741,17 @@ function GlassCard({ children, className = "", color = "#6366F1" }) {
   );
 }
 
-function SectionLabel({ text, color = "#6366F1" }) {
+function SectionLabel({
+  text,
+  color = "#6366F1",
+}) {
   return (
     <div className="inline-flex items-center gap-2 mb-4">
       <span
         className="block w-5 h-px"
-        style={{ background: color }}
+        style={{
+          background: color,
+        }}
       />
 
       <span
@@ -624,15 +767,22 @@ function SectionLabel({ text, color = "#6366F1" }) {
 
       <span
         className="block w-5 h-px"
-        style={{ background: color }}
+        style={{
+          background: color,
+        }}
       />
     </div>
   );
 }
 
-/* ── Animated count-up ── */
+/* ══════════════════════════
+   COUNT UP
+══════════════════════════ */
 
-function CountUp({ target, suffix = "" }) {
+function CountUp({
+  target,
+  suffix = "",
+}) {
   const [val, setVal] = useState(0);
   const [ref, visible] = useReveal(0.5);
 
@@ -669,7 +819,6 @@ function CountUp({ target, suffix = "" }) {
 ══════════════════════════ */
 
 export default function Home() {
-  /* Floating card counter animation */
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -699,7 +848,10 @@ export default function Home() {
         fontStyle: "italic",
       }}
     >
-      {/* ── Noise overlay ── */}
+      {/* ══════════════════════════════
+          NOISE OVERLAY
+      ══════════════════════════════ */}
+
       <div
         className="pointer-events-none fixed inset-0 z-0"
         style={{
@@ -716,16 +868,16 @@ export default function Home() {
       ══════════════════════════════ */}
 
       <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden">
-        {/* BG IMAGE — full bleed, dark overlay */}
         <div className="absolute inset-0 z-0">
           <img
             src={bgDark}
             alt=""
             className="w-full h-full object-cover object-center"
-            style={{ opacity: 0.55 }}
+            style={{
+              opacity: 0.55,
+            }}
           />
 
-          {/* Gradient scrim */}
           <div
             className="absolute inset-0"
             style={{
@@ -734,7 +886,6 @@ export default function Home() {
             }}
           />
 
-          {/* Bottom fade */}
           <div
             className="absolute inset-x-0 bottom-0 h-40"
             style={{
@@ -743,7 +894,6 @@ export default function Home() {
             }}
           />
 
-          {/* Top fade */}
           <div
             className="absolute inset-x-0 top-0 h-24"
             style={{
@@ -753,7 +903,6 @@ export default function Home() {
           />
         </div>
 
-        {/* Ambient purple glow on left */}
         <div
           className="pointer-events-none absolute -left-40 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
           style={{
@@ -765,14 +914,14 @@ export default function Home() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            {/* ── Left: Text ── */}
             <div className="lg:ml-[-24px] px-2 sm:px-0">
-              {/* Badge */}
               <div
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium mb-5 sm:mb-7"
                 style={{
-                  background: "rgba(99,102,241,0.12)",
-                  border: "1px solid rgba(99,102,241,0.3)",
+                  background:
+                    "rgba(99,102,241,0.12)",
+                  border:
+                    "1px solid rgba(99,102,241,0.3)",
                   color: "#A5B4FC",
                   fontFamily: FONT_BODY,
                   fontStyle: "italic",
@@ -784,14 +933,14 @@ export default function Home() {
                 AI-First Technology Partner
               </div>
 
-              {/* Headline */}
               <h1
                 className="leading-[1.05] mb-5 sm:mb-6"
                 style={{
                   fontFamily: FONT_DISPLAY,
                   fontWeight: 700,
                   fontStyle: "italic",
-                  fontSize: "clamp(2rem, 8vw, 4.5rem)",
+                  fontSize:
+                    "clamp(2rem, 8vw, 4.5rem)",
                   color: "#F8FAFC",
                   animation:
                     "fadeSlideUp 0.75s 0.1s cubic-bezier(.22,1,.36,1) both",
@@ -802,8 +951,10 @@ export default function Home() {
                   style={{
                     backgroundImage:
                       "linear-gradient(135deg, #818CF8 0%, #60A5FA 50%, #C084FC 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
+                    WebkitBackgroundClip:
+                      "text",
+                    WebkitTextFillColor:
+                      "transparent",
                     backgroundClip: "text",
                   }}
                 >
@@ -858,8 +1009,10 @@ export default function Home() {
                   to="/services"
                   className="group inline-flex items-center gap-2 px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5"
                   style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.12)",
+                    background:
+                      "rgba(255,255,255,0.05)",
+                    border:
+                      "1px solid rgba(255,255,255,0.12)",
                     color: "#CBD5E1",
                     fontFamily: FONT_BODY,
                     fontStyle: "italic",
@@ -870,7 +1023,6 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Mini trust strip */}
               <div
                 className="flex flex-wrap gap-5 sm:gap-6 mt-10 sm:mt-12"
                 style={{
@@ -879,9 +1031,21 @@ export default function Home() {
                 }}
               >
                 {[
-                  { n: 50, s: "+", label: "Projects Delivered" },
-                  { n: 10, s: "+", label: "Industries Served" },
-                  { n: 4, s: "+ years", label: "Deep Experience" },
+                  {
+                    n: 50,
+                    s: "+",
+                    label: "Projects Delivered",
+                  },
+                  {
+                    n: 10,
+                    s: "+",
+                    label: "Industries Served",
+                  },
+                  {
+                    n: 4,
+                    s: "+ years",
+                    label: "Deep Experience",
+                  },
                 ].map((item) => (
                   <div key={item.label}>
                     <p
@@ -891,12 +1055,17 @@ export default function Home() {
                         fontStyle: "italic",
                         backgroundImage:
                           "linear-gradient(135deg, #818CF8, #60A5FA)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
+                        WebkitBackgroundClip:
+                          "text",
+                        WebkitTextFillColor:
+                          "transparent",
                         backgroundClip: "text",
                       }}
                     >
-                      <CountUp target={item.n} suffix={item.s} />
+                      <CountUp
+                        target={item.n}
+                        suffix={item.s}
+                      />
                     </p>
 
                     <p
@@ -914,7 +1083,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ── Right: Floating cards — desktop only ── */}
+            {/* RIGHT FLOATING CARDS */}
+
             <div
               className="relative hidden lg:flex items-center justify-center"
               style={{
@@ -923,12 +1093,13 @@ export default function Home() {
                   "fadeSlideUp 0.9s 0.2s cubic-bezier(.22,1,.36,1) both",
               }}
             >
-              {/* AI Engine card */}
               <div
                 className="absolute top-0 right-0 w-[300px] rounded-2xl p-5 shadow-2xl"
                 style={{
-                  background: "rgba(15,18,40,0.88)",
-                  border: "1px solid rgba(99,102,241,0.25)",
+                  background:
+                    "rgba(15,18,40,0.88)",
+                  border:
+                    "1px solid rgba(99,102,241,0.25)",
                   backdropFilter: "blur(20px)",
                 }}
               >
@@ -970,7 +1141,10 @@ export default function Home() {
                   <div className="ml-auto flex items-center gap-1.5">
                     <span
                       className="w-2 h-2 rounded-full bg-emerald-400"
-                      style={{ animation: "pulse 2s infinite" }}
+                      style={{
+                        animation:
+                          "pulse 2s infinite",
+                      }}
                     />
 
                     <span
@@ -1012,7 +1186,8 @@ export default function Home() {
                 <div
                   className="mt-4 h-1.5 rounded-full"
                   style={{
-                    background: "rgba(255,255,255,0.07)",
+                    background:
+                      "rgba(255,255,255,0.07)",
                   }}
                 >
                   <div
@@ -1039,12 +1214,13 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Automation rate card */}
               <div
                 className="absolute bottom-12 left-4 w-44 rounded-2xl p-4 shadow-xl"
                 style={{
-                  background: "rgba(15,18,40,0.88)",
-                  border: "1px solid rgba(99,102,241,0.2)",
+                  background:
+                    "rgba(15,18,40,0.88)",
+                  border:
+                    "1px solid rgba(99,102,241,0.2)",
                   backdropFilter: "blur(16px)",
                 }}
               >
@@ -1066,8 +1242,10 @@ export default function Home() {
                     fontStyle: "italic",
                     backgroundImage:
                       "linear-gradient(135deg, #818CF8, #60A5FA)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
+                    WebkitBackgroundClip:
+                      "text",
+                    WebkitTextFillColor:
+                      "transparent",
                     backgroundClip: "text",
                   }}
                 >
@@ -1086,19 +1264,22 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* AI-Powered pill */}
               <div
                 className="absolute bottom-6 right-4 w-48 rounded-2xl p-4 shadow-xl"
                 style={{
-                  background: "rgba(99,102,241,0.12)",
-                  border: "1px solid rgba(99,102,241,0.25)",
+                  background:
+                    "rgba(99,102,241,0.12)",
+                  border:
+                    "1px solid rgba(99,102,241,0.25)",
                   backdropFilter: "blur(16px)",
                 }}
               >
                 <div className="flex items-center gap-2 mb-2">
                   <Zap
                     className="w-4 h-4"
-                    style={{ color: "#818CF8" }}
+                    style={{
+                      color: "#818CF8",
+                    }}
                   />
 
                   <p
@@ -1125,7 +1306,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Subtle vertical glow line */}
               <div
                 className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 pointer-events-none"
                 style={{
@@ -1137,7 +1317,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* CSS keyframes */}
         <style>{`
           @keyframes fadeSlideUp {
             from {
@@ -1179,7 +1358,9 @@ export default function Home() {
 
       <section
         className="py-16 md:py-28 relative overflow-hidden"
-        style={{ background: "#080C1F" }}
+        style={{
+          background: "#080C1F",
+        }}
       >
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-20"
@@ -1200,14 +1381,18 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-              <SectionLabel text="Who We Are" color="#6366F1" />
+              <SectionLabel
+                text="Who We Are"
+                color="#6366F1"
+              />
 
               <h2
                 style={{
                   fontFamily: FONT_DISPLAY,
                   fontWeight: 700,
                   fontStyle: "italic",
-                  fontSize: "clamp(1.5rem, 5vw, 2.8rem)",
+                  fontSize:
+                    "clamp(1.5rem, 5vw, 2.8rem)",
                   color: "#F8FAFC",
                   lineHeight: 1.18,
                   marginBottom: "1rem",
@@ -1238,23 +1423,29 @@ export default function Home() {
               {
                 icon: Brain,
                 label: "AI-Native",
-                sub: "Intelligence embedded by default — not layered on after the fact.",
+                sub:
+                  "Intelligence embedded by default — not layered on after the fact.",
                 color: "#6366F1",
               },
               {
                 icon: Layers,
                 label: "Full-Spectrum",
-                sub: "From strategy and design to deployment and support — full delivery lifecycle.",
+                sub:
+                  "From strategy and design to deployment and support — full delivery lifecycle.",
                 color: "#3B82F6",
               },
               {
                 icon: CheckCircle2,
                 label: "Outcome-Driven",
-                sub: "We measure success by the business results you achieve, not features shipped.",
+                sub:
+                  "We measure success by the business results you achieve, not features shipped.",
                 color: "#8B5CF6",
               },
             ].map((item, i) => (
-              <Reveal key={item.label} delay={i * 80}>
+              <Reveal
+                key={item.label}
+                delay={i * 80}
+              >
                 <GlassCard
                   className="p-5 sm:p-7"
                   color={item.color}
@@ -1263,12 +1454,15 @@ export default function Home() {
                     className="w-10 sm:w-11 h-10 sm:h-11 rounded-xl flex items-center justify-center mb-4 sm:mb-5"
                     style={{
                       background: `${item.color}18`,
-                      border: `1px solid ${item.color}30`,
+                      border:
+                        `1px solid ${item.color}30`,
                     }}
                   >
                     <item.icon
                       className="w-5 h-5"
-                      style={{ color: item.color }}
+                      style={{
+                        color: item.color,
+                      }}
                     />
                   </div>
 
@@ -1320,14 +1514,18 @@ export default function Home() {
           <Reveal>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 sm:gap-6 mb-10 sm:mb-14">
               <div className="max-w-xl">
-                <SectionLabel text="What We Do" color="#6366F1" />
+                <SectionLabel
+                  text="What We Do"
+                  color="#6366F1"
+                />
 
                 <h2
                   style={{
                     fontFamily: FONT_DISPLAY,
                     fontWeight: 700,
                     fontStyle: "italic",
-                    fontSize: "clamp(1.4rem, 5vw, 2.5rem)",
+                    fontSize:
+                      "clamp(1.4rem, 5vw, 2.5rem)",
                     color: "#F8FAFC",
                     lineHeight: 1.2,
                   }}
@@ -1340,8 +1538,10 @@ export default function Home() {
                 to="/services"
                 className="group inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm flex-shrink-0 transition-all duration-200 hover:-translate-y-0.5 self-start md:self-auto"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  background:
+                    "rgba(255,255,255,0.04)",
+                  border:
+                    "1px solid rgba(255,255,255,0.1)",
                   color: "#CBD5E1",
                   fontFamily: FONT_BODY,
                   fontStyle: "italic",
@@ -1355,7 +1555,10 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
             {services.map((svc, i) => (
-              <Reveal key={svc.title} delay={(i % 4) * 60}>
+              <Reveal
+                key={svc.title}
+                delay={(i % 4) * 60}
+              >
                 <GlassCard
                   className="p-3 sm:p-5 flex flex-col h-full"
                   color={svc.color}
@@ -1370,13 +1573,16 @@ export default function Home() {
                     className="w-9 sm:w-10 h-9 sm:h-10 rounded-xl flex items-center justify-center mb-3 sm:mb-4 flex-shrink-0 -mt-8 sm:-mt-9 ml-1 relative z-10"
                     style={{
                       background: svc.bg,
-                      border: `1px solid ${svc.color}22`,
+                      border:
+                        `1px solid ${svc.color}22`,
                       backdropFilter: "blur(8px)",
                     }}
                   >
                     <svc.icon
                       className="w-4 sm:w-5 h-4 sm:h-5"
-                      style={{ color: svc.color }}
+                      style={{
+                        color: svc.color,
+                      }}
                     />
                   </div>
 
@@ -1441,7 +1647,9 @@ export default function Home() {
 
       <section
         className="py-16 md:py-28 relative overflow-hidden"
-        style={{ background: "#080C1F" }}
+        style={{
+          background: "#080C1F",
+        }}
       >
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-20"
@@ -1472,14 +1680,18 @@ export default function Home() {
           <Reveal>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 sm:gap-6 mb-10 sm:mb-14">
               <div className="max-w-xl">
-                <SectionLabel text="Our Products" color="#3B82F6" />
+                <SectionLabel
+                  text="Our Products"
+                  color="#3B82F6"
+                />
 
                 <h2
                   style={{
                     fontFamily: FONT_DISPLAY,
                     fontWeight: 700,
                     fontStyle: "italic",
-                    fontSize: "clamp(1.4rem, 5vw, 2.5rem)",
+                    fontSize:
+                      "clamp(1.4rem, 5vw, 2.5rem)",
                     color: "#F8FAFC",
                     lineHeight: 1.2,
                   }}
@@ -1492,8 +1704,10 @@ export default function Home() {
                 to="/products"
                 className="group inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm flex-shrink-0 transition-all duration-200 hover:-translate-y-0.5 self-start md:self-auto"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  background:
+                    "rgba(255,255,255,0.04)",
+                  border:
+                    "1px solid rgba(255,255,255,0.1)",
                   color: "#CBD5E1",
                   fontFamily: FONT_BODY,
                   fontStyle: "italic",
@@ -1507,7 +1721,10 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {products.map((prod, i) => (
-              <Reveal key={prod.name} delay={(i % 4) * 60}>
+              <Reveal
+                key={prod.name}
+                delay={(i % 4) * 60}
+              >
                 <GlassCard
                   className="p-3 sm:p-5 flex flex-col h-full"
                   color={prod.color}
@@ -1521,14 +1738,19 @@ export default function Home() {
                   <div
                     className="w-9 sm:w-10 h-9 sm:h-10 rounded-xl flex items-center justify-center mb-3 sm:mb-4 -mt-8 sm:-mt-9 ml-1 relative z-10"
                     style={{
-                      background: `${prod.color}15`,
-                      border: `1px solid ${prod.color}22`,
-                      backdropFilter: "blur(8px)",
+                      background:
+                        `${prod.color}15`,
+                      border:
+                        `1px solid ${prod.color}22`,
+                      backdropFilter:
+                        "blur(8px)",
                     }}
                   >
                     <prod.icon
                       className="w-4 sm:w-5 h-4 sm:h-5"
-                      style={{ color: prod.color }}
+                      style={{
+                        color: prod.color,
+                      }}
                     />
                   </div>
 
@@ -1615,7 +1837,8 @@ export default function Home() {
                   fontFamily: FONT_DISPLAY,
                   fontWeight: 700,
                   fontStyle: "italic",
-                  fontSize: "clamp(1.4rem, 5vw, 2.5rem)",
+                  fontSize:
+                    "clamp(1.4rem, 5vw, 2.5rem)",
                   color: "#F8FAFC",
                   lineHeight: 1.2,
                 }}
@@ -1657,7 +1880,10 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {educationOfferings.map((item, i) => (
-                <Reveal key={item.title} delay={i * 70}>
+                <Reveal
+                  key={item.title}
+                  delay={i * 70}
+                >
                   <GlassCard
                     className="p-4 sm:p-5"
                     color="#8B5CF6"
@@ -1665,13 +1891,17 @@ export default function Home() {
                     <div
                       className="w-9 sm:w-10 h-9 sm:h-10 rounded-xl flex items-center justify-center mb-3"
                       style={{
-                        background: "rgba(139,92,246,0.12)",
-                        border: "1px solid rgba(139,92,246,0.2)",
+                        background:
+                          "rgba(139,92,246,0.12)",
+                        border:
+                          "1px solid rgba(139,92,246,0.2)",
                       }}
                     >
                       <item.icon
                         className="w-4 sm:w-5 h-4 sm:h-5"
-                        style={{ color: "#A78BFA" }}
+                        style={{
+                          color: "#A78BFA",
+                        }}
                       />
                     </div>
 
@@ -1706,12 +1936,14 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════
-          OUR CLIENTS — floating auto-scroll marquee
+          OUR CLIENTS
       ══════════════════════════════ */}
 
       <section
         className="py-16 md:py-24 relative overflow-hidden"
-        style={{ background: "#080C1F" }}
+        style={{
+          background: "#080C1F",
+        }}
       >
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-20"
@@ -1741,14 +1973,18 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-              <SectionLabel text="Our Clients" color="#3B82F6" />
+              <SectionLabel
+                text="Our Clients"
+                color="#3B82F6"
+              />
 
               <h2
                 style={{
                   fontFamily: FONT_DISPLAY,
                   fontWeight: 700,
                   fontStyle: "italic",
-                  fontSize: "clamp(1.4rem, 5vw, 2.5rem)",
+                  fontSize:
+                    "clamp(1.4rem, 5vw, 2.5rem)",
                   color: "#F8FAFC",
                   lineHeight: 1.2,
                 }}
@@ -1772,7 +2008,9 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={100}>
-            <ClientsMarquee items={clients} />
+            <ClientsMarquee
+              items={clients}
+            />
           </Reveal>
         </div>
       </section>
@@ -1795,7 +2033,8 @@ export default function Home() {
                   fontFamily: FONT_DISPLAY,
                   fontWeight: 700,
                   fontStyle: "italic",
-                  fontSize: "clamp(1.4rem, 5vw, 2.5rem)",
+                  fontSize:
+                    "clamp(1.4rem, 5vw, 2.5rem)",
                   color: "#F8FAFC",
                   lineHeight: 1.2,
                 }}
@@ -1807,7 +2046,10 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
             {whyUs.map((item, i) => (
-              <Reveal key={item.title} delay={(i % 3) * 70}>
+              <Reveal
+                key={item.title}
+                delay={(i % 3) * 70}
+              >
                 <GlassCard
                   className="p-5 sm:p-6"
                   color="#6366F1"
@@ -1816,14 +2058,17 @@ export default function Home() {
                     <div
                       className="w-9 sm:w-10 h-9 sm:h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                       style={{
-                        background: "rgba(99,102,241,0.12)",
+                        background:
+                          "rgba(99,102,241,0.12)",
                         border:
                           "1px solid rgba(99,102,241,0.22)",
                       }}
                     >
                       <item.icon
                         className="w-4 sm:w-5 h-4 sm:h-5"
-                        style={{ color: "#818CF8" }}
+                        style={{
+                          color: "#818CF8",
+                        }}
                       />
                     </div>
 
@@ -1865,7 +2110,9 @@ export default function Home() {
 
       <section
         className="py-16 md:py-28 relative overflow-hidden"
-        style={{ background: "#080C1F" }}
+        style={{
+          background: "#080C1F",
+        }}
       >
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-20"
@@ -1896,7 +2143,8 @@ export default function Home() {
                   fontFamily: FONT_DISPLAY,
                   fontWeight: 700,
                   fontStyle: "italic",
-                  fontSize: "clamp(1.4rem, 5vw, 2.5rem)",
+                  fontSize:
+                    "clamp(1.4rem, 5vw, 2.5rem)",
                   color: "#F8FAFC",
                   lineHeight: 1.2,
                 }}
@@ -1908,7 +2156,10 @@ export default function Home() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {industries.map((ind, i) => (
-              <Reveal key={ind.name} delay={(i % 4) * 50}>
+              <Reveal
+                key={ind.name}
+                delay={(i % 4) * 50}
+              >
                 <GlassCard
                   className="flex flex-col items-center gap-2 sm:gap-3 p-4 sm:p-5 text-center cursor-default"
                   color="#3B82F6"
@@ -1916,14 +2167,17 @@ export default function Home() {
                   <div
                     className="w-10 sm:w-11 h-10 sm:h-11 rounded-xl flex items-center justify-center"
                     style={{
-                      background: "rgba(59,130,246,0.12)",
+                      background:
+                        "rgba(59,130,246,0.12)",
                       border:
                         "1px solid rgba(59,130,246,0.2)",
                     }}
                   >
                     <ind.icon
                       className="w-4 sm:w-5 h-4 sm:h-5"
-                      style={{ color: "#60A5FA" }}
+                      style={{
+                        color: "#60A5FA",
+                      }}
                     />
                   </div>
 
@@ -1950,7 +2204,9 @@ export default function Home() {
 
       <section
         className="py-16 md:py-28 relative overflow-hidden"
-        style={{ background: "#080C1F" }}
+        style={{
+          background: "#080C1F",
+        }}
       >
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-20"
@@ -1990,7 +2246,8 @@ export default function Home() {
                   fontFamily: FONT_DISPLAY,
                   fontWeight: 700,
                   fontStyle: "italic",
-                  fontSize: "clamp(1.4rem, 5vw, 2.5rem)",
+                  fontSize:
+                    "clamp(1.4rem, 5vw, 2.5rem)",
                   color: "#F8FAFC",
                   lineHeight: 1.2,
                 }}
@@ -2001,7 +2258,6 @@ export default function Home() {
           </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 relative">
-            {/* Connector line — desktop only */}
             <div
               className="hidden lg:block absolute top-8 left-[12%] right-[12%] h-px z-0"
               style={{
@@ -2082,7 +2338,8 @@ export default function Home() {
             <div
               className="rounded-3xl p-7 sm:p-10 md:p-14 lg:p-16 text-center relative overflow-hidden"
               style={{
-                background: "rgba(255,255,255,0.025)",
+                background:
+                  "rgba(255,255,255,0.025)",
                 border:
                   "1px solid rgba(255,255,255,0.09)",
                 boxShadow:
@@ -2109,7 +2366,8 @@ export default function Home() {
                 <div
                   className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium mb-5 sm:mb-6"
                   style={{
-                    background: "rgba(99,102,241,0.12)",
+                    background:
+                      "rgba(99,102,241,0.12)",
                     border:
                       "1px solid rgba(99,102,241,0.28)",
                     color: "#A5B4FC",
@@ -2172,7 +2430,8 @@ export default function Home() {
                     to="/services"
                     className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5"
                     style={{
-                      background: "rgba(255,255,255,0.04)",
+                      background:
+                        "rgba(255,255,255,0.04)",
                       border:
                         "1px solid rgba(255,255,255,0.1)",
                       color: "#94A3B8",
@@ -2212,7 +2471,9 @@ export default function Home() {
                     >
                       <sig.icon
                         className="w-3.5 h-3.5"
-                        style={{ color: "#6366F1" }}
+                        style={{
+                          color: "#6366F1",
+                        }}
                       />
 
                       <span
@@ -2236,7 +2497,9 @@ export default function Home() {
 
       <div
         className="h-12"
-        style={{ background: "#050816" }}
+        style={{
+          background: "#050816",
+        }}
       />
     </div>
   );
